@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             DesarrolloDeInterfacesTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    ReplicarLayout(
+                    ReplicarLayout2(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -51,7 +51,7 @@ fun MyBox(modifier: Modifier = Modifier) {
 @Composable
 fun Preview() {
     DesarrolloDeInterfacesTheme {
-        ReplicarLayout()
+        ReplicarLayout2()
     }
 }
 
@@ -73,6 +73,34 @@ fun ReplicarLayout(modifier: Modifier = Modifier) {
         }
         Box(modifier = modifier.fillMaxWidth().weight(2f).background(Color.Magenta), contentAlignment = Alignment.BottomCenter) {
             Text(text = "Ejemplo 4")
+        }
+    }
+}
+
+@Composable
+fun ReplicarLayout2(modifier: Modifier=Modifier){
+    Column(modifier = modifier.fillMaxSize()) {
+        Row(modifier = modifier.fillMaxWidth().weight(1f)) {
+            Box(modifier = modifier.fillMaxHeight().weight(2f).background(Color.Blue), contentAlignment = Alignment.Center){
+                Text(text = "Columna Azul")
+            }
+            Box(modifier = modifier.fillMaxHeight().weight(1f).background(Color.Red)){
+                Text(text = "Columna Roja")
+            }
+        }
+        Row(modifier = modifier.fillMaxWidth().weight(1f)) {
+            Box(modifier = modifier.fillMaxHeight().weight(3f).background(Color.Yellow)){
+                Text(text = "Columna Amarilla")
+            }
+            Box(modifier = modifier.fillMaxHeight().weight(1f).background(Color.Magenta)){
+                Text(text = "Columna Magenta")
+            }
+            Box(modifier = modifier.fillMaxHeight().weight(2f).background(Color.Cyan)){
+                Text(text = "Columna Cyan")
+            }
+            Box(modifier = modifier.fillMaxHeight().weight(1f).background(Color.Green)){
+                Text(text = "Columna Verde")
+            }
         }
     }
 }
