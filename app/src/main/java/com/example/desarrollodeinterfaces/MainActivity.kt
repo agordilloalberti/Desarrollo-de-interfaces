@@ -13,16 +13,20 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.desarrollodeinterfaces.ui.theme.DesarrolloDeInterfacesTheme
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +55,7 @@ fun MyBox(modifier: Modifier = Modifier) {
 @Composable
 fun Preview() {
     DesarrolloDeInterfacesTheme {
-        ReplicarLayout2()
+        ReplicarLayout3()
     }
 }
 
@@ -102,5 +106,58 @@ fun ReplicarLayout2(modifier: Modifier=Modifier){
                 Text(text = "Columna Verde")
             }
         }
+    }
+}
+
+@Composable
+fun ReplicarLayout3(modifier: Modifier = Modifier){
+    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
+        val (boxC, boxB,boxG,boxR,boxM,boxY) = createRefs()
+
+        Box(modifier = Modifier
+            .size(125.dp)
+            .background(Color.Cyan)
+            .constrainAs(boxC){
+                top.linkTo(parent.top)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+            })
+        Box(modifier = Modifier
+            .size(125.dp)
+            .background(Color.Blue)
+            .constrainAs(boxB){
+                end.linkTo(boxR.start)
+                bottom.linkTo(boxR.top)
+            })
+        Box(modifier = Modifier
+            .size(125.dp)
+            .background(Color.Green)
+            .constrainAs(boxG){
+                bottom.linkTo(boxR.top)
+                start.linkTo(boxR.end)
+            })
+        Box(modifier = Modifier
+            .size(125.dp)
+            .background(Color.Red)
+            .constrainAs(boxR){
+                top.linkTo(parent.top)
+                start.linkTo(parent.start)
+                bottom.linkTo(parent.bottom)
+                end.linkTo(parent.end)
+            })
+        Box(modifier = Modifier
+            .size(125.dp)
+            .background(Color.Magenta)
+            .constrainAs(boxM){
+                top.linkTo(boxR.bottom)
+                end.linkTo(boxR.start)
+            })
+        Box(modifier = Modifier
+            .size(125.dp)
+            .background(Color.Yellow)
+            .constrainAs(boxY){
+                top.linkTo(boxR.bottom)
+                start.linkTo(boxR.end)
+            })
     }
 }
