@@ -31,6 +31,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.style.TextDecoration
 
 @Composable
 fun MyBox(modifier: Modifier = Modifier) {
@@ -156,6 +157,21 @@ fun MyStateLayout(modifier: Modifier = Modifier){
     }
 }
 
+@Composable
+fun MyText(modifier: Modifier = Modifier){
+    Column(modifier = modifier.fillMaxSize()){
+        Text(text = "Ejemplo 1")
+        Text(
+            text = "Ejemplo 2",
+            textDecoration = TextDecoration.Underline
+        )
+        Text(
+            text = "Ejemplo 3",
+            textDecoration = TextDecoration.LineThrough
+            )
+        Text(text = "Ejemplo 4")
+    }
+}
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -177,6 +193,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Preview() {
     DesarrolloDeInterfacesTheme {
-        MyStateLayout()
+        MyText()
     }
 }
