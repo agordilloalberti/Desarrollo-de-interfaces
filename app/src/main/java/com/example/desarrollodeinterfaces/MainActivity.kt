@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -158,6 +159,7 @@ fun MyStateLayout(modifier: Modifier = Modifier){
 }
 
 @Composable
+//@Preview
 fun MyText(modifier: Modifier = Modifier){
     Column(modifier = modifier.fillMaxSize()){
         Text(text = "Ejemplo 1")
@@ -173,6 +175,16 @@ fun MyText(modifier: Modifier = Modifier){
     }
 }
 
+@Composable
+@Preview
+fun MyTextField(modifier: Modifier = Modifier){
+    var textf by rememberSaveable { mutableStateOf("Escribe algo") }
+    TextField(modifier = modifier.fillMaxSize(),
+        value = textf,
+        onValueChange = {textf = it}
+    )
+}
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -180,19 +192,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             DesarrolloDeInterfacesTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MyStateLayout(
+                    MyText(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun Preview() {
-    DesarrolloDeInterfacesTheme {
-        MyText()
     }
 }
