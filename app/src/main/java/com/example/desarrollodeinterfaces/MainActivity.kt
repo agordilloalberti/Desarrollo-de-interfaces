@@ -1,9 +1,11 @@
 package com.example.desarrollodeinterfaces
 
 import android.os.Bundle
+import android.util.Log.i
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,6 +19,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -176,13 +179,31 @@ fun MyText(modifier: Modifier = Modifier){
 }
 
 @Composable
-@Preview
+//@Preview
 fun MyTextField(modifier: Modifier = Modifier){
     var textf by rememberSaveable { mutableStateOf("Escribe algo") }
     TextField(modifier = modifier.fillMaxSize(),
         value = textf,
         onValueChange = {textf = it}
     )
+}
+
+@Composable
+@Preview
+fun MyButton(modifier: Modifier = Modifier){
+    Column(modifier = modifier
+        .fillMaxSize()
+        .padding(24.dp)){
+        Button(onClick = {i("Prueba","Esto es un boton")}
+            , colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Blue,
+                contentColor = Color.White
+            ),
+            border = BorderStroke(3.dp,Color.Black)
+            ) {
+            Text(text = "Prueba")
+        }
+    }
 }
 
 class MainActivity : ComponentActivity() {
