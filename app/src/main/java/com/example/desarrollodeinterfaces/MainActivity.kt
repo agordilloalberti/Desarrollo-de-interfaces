@@ -67,6 +67,7 @@ fun ReplicarLayout(modifier: Modifier = Modifier) {
 }
 
 @Composable
+@Preview
 fun ReplicarLayout2(modifier: Modifier=Modifier){
     Column(modifier = modifier.fillMaxSize()) {
         Row(modifier = modifier.fillMaxWidth().weight(1f)) {
@@ -189,7 +190,7 @@ fun MyTextField(modifier: Modifier = Modifier){
 }
 
 @Composable
-@Preview
+//@Preview
 fun MyButton(modifier: Modifier = Modifier){
     Column(modifier = modifier
         .fillMaxSize()
